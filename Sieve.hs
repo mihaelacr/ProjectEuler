@@ -1,6 +1,6 @@
 module Sieve where
 
-import Data.List.Ordered (minus, unionAll)
+import Data.List.Ordered (minus)
 
 
 -- Compute list of prime numbers using Sieve of Eratosthenes

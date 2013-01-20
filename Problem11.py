@@ -52,8 +52,8 @@ def getNeighbour(i, j, d):
     else:
       raise Exception("Reached border, cannot advance diagonally!")
   elif d == 3:
-    if j > 0 and i > 0:
-      return (i - 1, j - 1)
+    if j < size and i > 0:
+      return (i - 1, j + 1)
     else:
       raise Exception("Reached border, cannot advance diagonally!")
   else:
@@ -67,7 +67,7 @@ def getIndices(d):
   elif d == 2:
     return [(i, j) for i in xrange(0, size - c) for j in xrange(0, size - c)]
   elif d == 3:
-    return [(i, j) for i in xrange(c - 1, size) for j in xrange(c - 1, size)]
+    return [(i, j) for i in xrange(c - 1, size) for j in xrange(0, size - c)]
   else:
     raise Exception("Unsupported direction!")
 
@@ -80,11 +80,14 @@ def getProduct(i, j, d):
   return prod
 
 maxProd = 0
+maxTuple = None
 
 for d in [0, 1, 2, 3]:
   for i, j in getIndices(d):
     prod = getProduct(i, j, d)
     if prod > maxProd:
       maxProd = prod
+      maxTuple = (i, j, d)
 
 print maxProd
+print maxTuple

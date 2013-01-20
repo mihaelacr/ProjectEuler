@@ -27,6 +27,7 @@ nr = ("73167176531330624919225119674426574742355349194934"
 
 maxprod = 0
 
+
 for i in xrange(0, len(nr)-5):
   prod = product(int(nr[j]) for j in xrange(i, i+5))
   if prod > maxprod:

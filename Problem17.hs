@@ -4,7 +4,7 @@ nrToStringCount :: Int -> Int
 nrToStringCount n
   | n >= 1000 = error "Unsupported number! Too big"
   | n <= 12 = [3, 3, 5, 4, 4, 3, 5, 5, 4, 3, 6, 6] !! (n - 1)
-  | n `elem` [13, 15] = 3 + nrToStringCount (n - 10)
+  | n `elem` [13, 15, 18] = 3 + nrToStringCount (n - 10)
   | n <= 19 = 4 + nrToStringCount (n - 10)
   | n == 70 = 7
   | n `elem` [40, 50, 60] = 5

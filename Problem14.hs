@@ -14,8 +14,10 @@ f x
   | even x = x `div` 2
   | otherwise = 3 * x + 1
 
+
 getInfiniteSequence :: Int -> [Int]
-getInfiniteSequence n = f n : getInfiniteSequence (head $ getInfiniteSequence n)
+getInfiniteSequence = iterate f
+
 
 -- Gets the Collatz sequence (without the 1, but this is uneeded for comparison)
 getSequence :: Int -> [Int]
@@ -50,4 +52,4 @@ maxSeqBruteForce :: (Int, Int)
 maxSeqBruteForce = maximumBy sndOrd [(i, length $ getSequence i) | i <- [1 .. limit + 1]]
 
 main :: IO()
-main = print (maximumBy sndOrd [(i, length $ getSequence i) | i <- [1 .. limit + 1]])
+main = print maxSeq

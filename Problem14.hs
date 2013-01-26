@@ -1,3 +1,5 @@
+module Main where
+
 import Data.Maybe
 import Data.Map as M
 import Data.List
@@ -43,3 +45,6 @@ sndOrd (_, y1) (_, y2) = compare y1 y2
 
 maxSeq :: (Int, Int)
 maxSeq = maximumBy sndOrd $ M.toList $ m1 1 M.empty
+
+main :: IO()
+main = print maxSeq

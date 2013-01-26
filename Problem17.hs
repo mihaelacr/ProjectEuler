@@ -7,8 +7,8 @@ nrToStringCount n
   | n `elem` [13, 15] = 3 + nrToStringCount (n - 10)
   | n <= 19 = 4 + nrToStringCount (n - 10)
   | n == 70 = 7
-  | n `elem` [20, 40, 50, 60] = 5
-  | n `elem` [30, 80, 90] = 6
+  | n `elem` [40, 50, 60] = 5
+  | n `elem` [20, 30, 80, 90] = 6
   | n < 100 = let rest = n `mod` 10 in nrToStringCount (n - rest) + nrToStringCount rest
   | n `mod` 100 == 0 = 7 + nrToStringCount (n `div` 100)
   | otherwise = let rest = n `mod` 100
@@ -16,5 +16,3 @@ nrToStringCount n
 
 res :: Int
 res = 11 + sum (map nrToStringCount [1.. 999])
-
-

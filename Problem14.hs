@@ -46,5 +46,8 @@ sndOrd (_, y1) (_, y2) = compare y1 y2
 maxSeq :: (Int, Int)
 maxSeq = maximumBy sndOrd $ M.toList $ m1 1 M.empty
 
+maxSeqBruteForce :: (Int, Int)
+maxSeqBruteForce = maximumBy sndOrd [(i, length $ getSequence i) | i <- [1 .. limit + 1]]
+
 main :: IO()
-main = print maxSeq
+main = print (maximumBy sndOrd [(i, length $ getSequence i) | i <- [1 .. limit + 1]])

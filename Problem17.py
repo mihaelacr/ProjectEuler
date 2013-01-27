@@ -8,6 +8,7 @@ tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eight
 
 suffixes = ["hundred", "thousand"]
 
+# (only works up to 1099)
 N = 1000
 
 numbers = []
@@ -27,9 +28,8 @@ for n in range(1,N+1):
         num = tens[int(s[-2])] + num
 
     if l >= 3:
-        if s[-l] != '0':
-            andstr = "and" if l==3 and s[-2:] != '00' else ""
-            num = units[int(s[-l])] + suffixes[l-3] + andstr + num
+        andstr = "and" if int(s[-2:]) != 0 else ""
+        num = units[int(s[-l])] + suffixes[l-3] + andstr + num
 
     numbers.append(num)
 

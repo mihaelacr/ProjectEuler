@@ -11,8 +11,9 @@ filename1 = "sample.txt"
 -- precondition is that the argument is a triangular list
 getMaxSum :: [[Int]] -> Int
 getMaxSum [] = 0
-getMaxSum xs = head $ foldr f (last xs) (init xs)
-  where f l acc = [  l !! i + max (acc !! i) (acc !! (i + 1)) | i <- [0 .. length l - 1]]
+getMaxSum xs = head $ foldr1 f xs
+  where f l acc = zipWith (+) l $ zipWith max acc (0:acc)
+
 
 sol :: String -> IO()
 sol file = do

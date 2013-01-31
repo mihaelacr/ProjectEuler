@@ -1,13 +1,15 @@
 -- http://projecteuler.net/problem=21
-import Data.List
 import qualified Data.Map as M
 
 limit :: Int
 limit = 10000
 
 d :: Int -> Int
-d n = 1 + sum [i | i <- [2 .. n `div` 2], n `mod` i == 0]
-
+d n = surplus + sum fst1 + sum snd1
+ where fst1 = [i | i <- [2 .. lim - 1], n `mod` i == 0]
+       snd1 = [ n `div` k | k <- fst1]
+       lim = floor $ sqrt $ fromIntegral n
+       surplus = if lim * lim == n && lim /= 1 then lim + 1 else 1
 
 l1 :: [(Int, Int)]
 l1 = [(i , d_i) | i  <- [1 .. limit], let d_i = d i, d_i /= i]
@@ -25,7 +27,4 @@ l2 :: [(Int, Int)]
 l2 = [(a, b) | (b, a) <- l1]
 
 sol2 :: Int
-sol2 = sum $ map fst $ intersect l1 l2
-
-sol3 :: Int
-sol3 =  sum [x | (x, y) <- zip [1 .. limit] [d (d i) | i <- [ 1.. limit] ], x == y, d x /= x]
+sol2 =  sum [x | (x, y) <- zip [1 .. limit] [d (d i) | i <- [ 1.. limit] ], x == y, d x /= x]

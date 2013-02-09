@@ -8,8 +8,7 @@ def score(name):
 with open(filename) as f:
   names = f.read()
   names = names.translate(None, "\"\n")
-  names = names.split(",")
-  names = sorted(names)
+  names = sorted(names.split(","))
   s = 0
   for i, name in enumerate(names):
     s += score(name) * (i + 1)

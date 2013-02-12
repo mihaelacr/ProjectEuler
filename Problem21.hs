@@ -1,4 +1,6 @@
 -- http://projecteuler.net/problem=21
+module Problem21 where
+
 import qualified Data.Map as M
 
 limit :: Int
@@ -6,10 +8,10 @@ limit = 10000
 
 d :: Int -> Int
 d n = surplus + sum fst1 + sum snd1
- where fst1 = [i | i <- [2 .. lim - 1], n `mod` i == 0]
+ where fst1 = [i | i <- [2 .. lim], n `mod` i == 0]
        snd1 = [ n `div` k | k <- fst1]
        lim = floor $ sqrt $ fromIntegral n
-       surplus = if lim * lim == n && lim /= 1 then lim + 1 else 1
+       surplus = if lim * lim == n && lim /= 1 then 1 - lim else 1
 
 l1 :: [(Int, Int)]
 l1 = [(i , d_i) | i  <- [1 .. limit], let d_i = d i, d_i /= i]

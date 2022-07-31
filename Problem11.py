@@ -28,7 +28,7 @@ size = 20
 c = 4
 
 def chunks(l, step):
-  return [l[i:(i+step)] for i in xrange(0, len(l), step)]
+  return [l[i:(i+step)] for i in range(0, len(l), step)]
 
 # split into lists
 grid = chunks(grid, size)
@@ -61,20 +61,20 @@ def getNeighbour(i, j, d):
 
 def getIndices(d):
   if d == 0:
-    return [(i, j) for i in xrange(0, size - c) for j in xrange(0, size)]
+    return [(i, j) for i in range(0, size - c) for j in range(0, size)]
   elif d == 1:
-    return [(i, j) for i in xrange(0, size) for j in xrange(0, size - c)]
+    return [(i, j) for i in range(0, size) for j in range(0, size - c)]
   elif d == 2:
-    return [(i, j) for i in xrange(0, size - c) for j in xrange(0, size - c)]
+    return [(i, j) for i in range(0, size - c) for j in range(0, size - c)]
   elif d == 3:
-    return [(i, j) for i in xrange(c - 1, size) for j in xrange(0, size - c)]
+    return [(i, j) for i in range(c - 1, size) for j in range(0, size - c)]
   else:
     raise Exception("Unsupported direction!")
 
 
 def getProduct(i, j, d):
   prod = grid[i][j]
-  for k in xrange(0, c - 1):
+  for k in range(0, c - 1):
     i, j = getNeighbour(i, j, d)
     prod *= grid[i][j]
   return prod
@@ -89,5 +89,5 @@ for d in [0, 1, 2, 3]:
       maxProd = prod
       maxTuple = (i, j, d)
 
-print maxProd
-print maxTuple
+print(maxProd)
+print(maxTuple)

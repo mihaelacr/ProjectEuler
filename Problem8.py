@@ -1,8 +1,4 @@
-import operator
-
-# reduce is the equivalent of foldl in haskell (goes from left to right)
-def product(l):
-  return reduce(operator.mul, l, 1)
+from math import prod
 
 nr = ("73167176531330624919225119674426574742355349194934"
       "96983520312774506326239578318016984801869478851843"
@@ -25,12 +21,12 @@ nr = ("73167176531330624919225119674426574742355349194934"
       "05886116467109405077541002256983155200055935729725"
       "71636269561882670428252483600823257530420752963450")
 
+ndigits = 13
 maxprod = 0
 
+for i in range(0, len(nr)-(ndigits-1)):
+  curprod = prod(int(nr[j]) for j in range(i, i+ndigits))
+  if curprod > maxprod:
+    maxprod = curprod
 
-for i in xrange(0, len(nr)-5):
-  prod = product(int(nr[j]) for j in xrange(i, i+5))
-  if prod > maxprod:
-    maxprod = prod
-
-print maxprod
+print(maxprod)
